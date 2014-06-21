@@ -30,45 +30,53 @@ html {
 /* Space out content a bit */
 body {
   height: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header {
 }
 
 /* Custom page header */
 .header {
-  padding-left: 15px;
-  padding-right: 15px;
+  margin: 20px;
   height: 40px;
 
-  .nav-pills > li.active > a,
-  .nav-pills > li.active > a:hover,
-  .nav-pills > li.active > a:focus {
-    background-color: $blue;
+  .nav-pills > li {
+    &.active {
+      a, a:hover, a:focus {
+        background-color: $blue;
+      }
+    }
   }
+
+  .nav-pills > li:nth-child(2) {
+    &.active {
+      a, a:hover, a:focus {
+        background-color: $red;
+      }
+    }
+  }
+
 }
 
 .content {
   @include flexbox();
-  height: 100%;
-  padding: 0 20px 20px 0;
-  &.bottom-left {
+  margin-right: 20px;
+  height: 80%;
+
+  // bottom left
+  &.position-0 {
     align-items: flex-end;
     .item-box {
       width: 50%;
     }
   }
-  &.top-right {
+  // top right
+  &.position-1 {
     justify-content: flex-end;
     .item-box {
       flex-direction: column;
-      height: 50%;
+      height: 60%;
     }
   }
-  &.center {
+  // center
+  &.position-2 {
     .item-box {
       margin: auto;
       width: 50%;
