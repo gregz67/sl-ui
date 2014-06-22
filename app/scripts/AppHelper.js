@@ -36,17 +36,6 @@ AppHelper.prototype = {
   },
 
   /**
-   * Returns the opposite color b/w red/blue
-   * To be used to remove old color selector on item boxes.
-   *
-   * @param color
-   * @returns {string}, default: 'red'
-   */
-  getOppositeColor: function (color) {
-    return (color === 'red' ? 'blue' : 'red');
-  },
-
-  /**
    * Returns the name for this page
    *
    * @param pageNum
@@ -67,16 +56,6 @@ AppHelper.prototype = {
   getPageLayout: function(pageNum) {
     var page = this.config[pageNum];
     return (page ? page.layout : 'bottom-left');
-  },
-
-  getOppositeLayouts: function(pageNum) {
-    if (pageNum === 2) {
-      return 'bottom-left center';
-    } else if (pageNum === 3) {
-      return 'top-right bottom-left';
-    }
-
-    return 'top-right center';
   }
 
 };

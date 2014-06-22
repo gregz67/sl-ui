@@ -7,27 +7,28 @@ $(document).ready(function() {
     buttons = $('.nav-pills > li'),
     titlePrefix = 'StrongLoop UI Eval | ',
 
-    updatePage = function(num) {
+    updatePage = function(next, prev) {
       var content = $('.content'),
         items = $('.item-box .item');
 
-      // change position of content
-      content.removeClass(appHelper.getOppositeLayouts(num));
-      content.addClass(appHelper.getPageLayout(num));
+      if (next !== prev) {
+        // change position of content
+        content.removeClass(appHelper.getPageLayout(prev));
+        content.addClass(appHelper.getPageLayout(next));
 
-      // reset item colors
-      var newColor = appHelper.getItemColor(num);
-      items.removeClass(appHelper.getOppositeColor(newColor));
-      items.addClass(newColor);
+        // reset item colors
+        items.removeClass(appHelper.getItemColor(prev));
+        items.addClass(appHelper.getItemColor(next));
 
-      // toggle button state
-      buttons.each(function(index, button) {
-        if (index === num - 1) {
-          $(button).addClass('active');
-        } else {
-          $(button).removeClass('active');
-        }
-      });
+        // toggle button state
+        buttons.each(function (index, button) {
+          if (index + 1 === prev) {
+            $(button).removeClass('active');
+          } else if (index + 1 === next) {
+            $(button).addClass('active');
+          }
+        });
+      }
     };
 
   // handle initial load
@@ -36,7 +37,7 @@ $(document).ready(function() {
     // if we get a bad num, default to one
     History.replaceState({ 'pageNum': 1 }, titlePrefix + appHelper.getPageName(1), '?1' );
   } else {
-    updatePage(parseInt(matches[1]));
+    updatePage(parseInt(matches[1]), 1);
   }
 
   // handle button clicks
@@ -49,8 +50,9 @@ $(document).ready(function() {
 
   // handle history state changes
   History.Adapter.bind(window, 'statechange', function() {
-    var state = History.getState();
-    updatePage(state.data.pageNum);
+    var stateData = History.getState().data,
+      prevData = History.getStateByIndex(History.getCurrentIndex() - 1).data;
+    updatePage(stateData.pageNum, prevData.pageNum);
   });
 
 });

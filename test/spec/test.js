@@ -24,17 +24,6 @@
 
     });
 
-    describe('.getOppositeColor', function() {
-
-      it('should return the opposite color b/w red/blue', function() {
-        expect(appHelper.getOppositeColor('red')).to.equal('blue');
-        expect(appHelper.getOppositeColor('blue')).to.equal('red');
-
-        // defaults to red
-        expect(appHelper.getOppositeColor('any other color')).to.equal('red');
-      });
-    });
-
     describe('.getPageName', function() {
 
       it('should return the page name when given a page num', function() {
@@ -56,15 +45,6 @@
 
         // defaults to 'bottom-left'
         expect(appHelper.getPageLayout('any invalid value'),'any invalid value').to.equal('bottom-left');
-      });
-    });
-
-    describe('.getOppositeLayouts', function() {
-
-      it('should return the other page layouts to remove', function() {
-        expect(appHelper.getOppositeLayouts(1), 'page 1').to.equal('top-right center');
-        expect(appHelper.getOppositeLayouts(2), 'page 2').to.equal('bottom-left center');
-        expect(appHelper.getOppositeLayouts(3), 'page 3').to.equal('top-right bottom-left');
       });
     });
 
