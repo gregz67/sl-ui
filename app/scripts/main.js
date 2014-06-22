@@ -1,28 +1,25 @@
 /*jshint indent:2 */
+/* global AppHelper */
 'use strict';
+
 $(document).ready(function() {
-  var buttons = $('.nav-pills > li');
+  var buttons = $('.nav-pills > li'),
+    appHelper = new AppHelper();
 
   buttons.click(function() {
 
-    var index = buttons.index(this),
+    var index = buttons.index(this) +1,
       content = $('.content'),
       items = $('.item-box .item');
 
     // change position of content
-    content.attr('class', function(ignore, cls) {
-      // update class based on button index
-      return cls.replace(/\bposition-\S+/g, 'position-' + index);
-    });
+    content.removeClass(appHelper.getOppositeLayouts(index));
+    content.addClass(appHelper.getPageLayout(index));
 
     // reset item colors
-    if (index === 1) {
-      // if two, blue boxes
-      items.removeClass('red').addClass('blue');
-    } else {
-      // otherwise, red boxes
-      items.removeClass('blue').addClass('red');
-    }
+    var newColor = appHelper.getItemColor(index);
+    items.removeClass(appHelper.getOppositeColor(newColor));
+    items.addClass(newColor);
 
   });
 });

@@ -4,7 +4,7 @@ $red: #FF0000;
 $white: #FFFFFF;
 
 // bower:scss
-@import '../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss';
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
 // Mixins
@@ -61,23 +61,20 @@ body {
   margin-right: 20px;
   height: 80%;
 
-  // bottom left
-  &.position-0 {
+  &.bottom-left {
     align-items: flex-end;
     .item-box {
       width: 50%;
     }
   }
-  // top right
-  &.position-1 {
+  &.top-right {
     justify-content: flex-end;
     .item-box {
       flex-direction: column;
       height: 60%;
     }
   }
-  // center
-  &.position-2 {
+  &.center {
     .item-box {
       margin: auto;
       width: 50%;
